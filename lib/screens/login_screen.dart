@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utilities/constants.dart';
 
@@ -10,9 +11,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late SharedPreferences sharedPrefs;
   bool showSpinner = false;
   String phone = '';
   String password = '';
+  var phoneInputController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        sharedPrefs = prefs;
+        phoneInputController.text = sharedPrefs.getString('phone') ?? '';
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   padding: const EdgeInsets.only(top: kDefaultPadding),
                   child: TextField(
+                    controller: phoneInputController,
                     keyboardType: TextInputType.phone,
                     onChanged: (value) {
                       phone = value;
@@ -78,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: () async {
                       try {
+                        sharedPrefs.setString('phone', phone);
                         setState(() {
                           showSpinner = true;
                         });
