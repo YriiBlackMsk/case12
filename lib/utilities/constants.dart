@@ -40,3 +40,15 @@ const kBigLinkTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 16,
 );
+
+var kThemeData = ThemeData(
+  brightness: Brightness.light,
+  primaryColor: const Color(0xFF0079D0),
+  backgroundColor: Colors.white,
+  fontFamily: 'Georgia',
+  colorScheme: const ColorScheme.light(),
+  textTheme: const TextTheme(
+    headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+    bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+  ),
+);

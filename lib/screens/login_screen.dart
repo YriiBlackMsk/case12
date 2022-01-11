@@ -1,12 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String id = 'LoginScreen';
-
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -73,10 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 160,
                   child: TextButton(
                     style: kButtonStyle,
-                    child: const Text(
+                    child: Text(
                       'Войти',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.background,
                         fontSize: 16,
                       ),
                     ),
@@ -89,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         print(e);
                       }
                       setState(() {
+                        print('phone:$phone; password:$password');
                         showSpinner = false;
                       });
                     },
@@ -96,20 +93,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: kDefaultPadding),
-                  child: const Text(
+                  child: Text(
                     'Регистрация',
-                    style: kBigLinkTextStyle,
+                    style: kBigLinkTextStyle.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: kDefaultPadding),
-                  child: const InkWell(
-                    child: Text(
-                      'Забыли пароль?',
-                      style: kBigLinkTextStyle,
-                      textAlign: TextAlign.center,
-                    ),
+                  child: const Text(
+                    'Забыли пароль?',
+                    style: kBigLinkTextStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
